@@ -390,7 +390,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8043802270750750520}
-  - component: {fileID: 6917407847896409871}
   m_Layer: 0
   m_Name: Character_Dev
   m_TagString: Untagged
@@ -418,27 +417,6 @@ Transform:
   - {fileID: 3062277256249928467}
   m_Father: {fileID: 8981592925176680310}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &6917407847896409871
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1989295869408140301}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 1b68ada046ca44148b08ed65c415de67, type: 3}
-  m_Controller: {fileID: 9100000, guid: 1133d540ef2e6c149a620428becdc60b, type: 2}
-  m_CullingMode: 1
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2073310665130214254
 GameObject:
   m_ObjectHideFlags: 0
@@ -707,9 +685,10 @@ GameObject:
   - component: {fileID: 6767242317469038108}
   - component: {fileID: 5672000966048751938}
   - component: {fileID: 3926320262389325052}
-  m_Layer: 0
+  - component: {fileID: 2663820399917759809}
+  m_Layer: 6
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -744,6 +723,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 5
   jumpForce: 5
+  cameraTransform: {fileID: 0}
 --- !u!114 &5301241897048545232
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -758,6 +738,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxHealth: 10
   _uiLifeController: {fileID: 0}
+  onDeath:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UI_Manager, Assembly-CSharp
+        m_MethodName: ShowLoseScreen
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &6767242317469038108
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -826,6 +821,27 @@ CapsuleCollider:
   m_Height: 2.25
   m_Direction: 1
   m_Center: {x: 0, y: 1.15, z: 0}
+--- !u!95 &2663820399917759809
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5196783286315296299}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 1b68ada046ca44148b08ed65c415de67, type: 3}
+  m_Controller: {fileID: 9100000, guid: 1133d540ef2e6c149a620428becdc60b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &5264640121195779567
 GameObject:
   m_ObjectHideFlags: 0

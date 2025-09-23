@@ -1,18 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class LifeController : MonoBehaviour
 {
     [SerializeField] private int _maxHealth = 10;
     [SerializeField] private UI_LifeController _uiLifeController;
+    public UnityEvent onDeath;
 
     private int _currentHealth;
 
     void Start()
     {
         _currentHealth = _maxHealth;
-
         _uiLifeController.UpdateLifeBar(1f);
     }
 
@@ -21,20 +20,12 @@ public class LifeController : MonoBehaviour
         _currentHealth -= damage;
         _currentHealth = Mathf.Clamp(_currentHealth, 0, _maxHealth);
 
-        Debug.Log($"Player took damage: {damage}, current health: {_currentHealth}");
-
         float normalizedHealth = (float)_currentHealth / _maxHealth;
         _uiLifeController.UpdateLifeBar(normalizedHealth);
 
         if (_currentHealth <= 0)
         {
-            Debug.Log("Player is dead");
-
-            MenuManager menu = FindObjectOfType<MenuManager>();
-            if (menu != null)
-            {
-                menu.Lose();
-            }
+            onDeath.Invoke();
 
             GetComponent<PlayerController>().enabled = false;
             this.enabled = false;
