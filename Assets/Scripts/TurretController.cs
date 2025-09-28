@@ -7,6 +7,7 @@ public class TurretController : MonoBehaviour
     [SerializeField] private BulletPoolManager poolManager;
     [SerializeField] private Transform firePoint;
     [SerializeField] private LayerMask playerLayer;
+    [SerializeField] private ParticleSystem muzzleFlash;
 
     private float fireCooldown = 0f;
     private Transform player;
@@ -37,18 +38,22 @@ public class TurretController : MonoBehaviour
 
     private void Fire()
     {
+
         Bullet bullet = poolManager.GetBullet();
         bullet.transform.position = firePoint.position;
         Vector3 targetPos = player.position + Vector3.up * 1.2f;
         Vector3 dir = (targetPos - firePoint.position).normalized;
 
         bullet.Shoot(dir);
-    }
 
+        if (muzzleFlash != null)
+            muzzleFlash.Play();
+    }
 
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, detectionRadius);
     }
+
 }
